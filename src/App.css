@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
-}
+:root { --bg: #0f1230; --panel: #1b1f47; --panel2: #1e2350; --text: #e5e8ff; --muted: #a9b0d9; --accent: #7f8cff; --chip: #8ea1ff; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 16px; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.header { display: flex; align-items: center; justify-content: space-between; background: var(--panel); border: 2px solid #3a3f74; border-radius: 16px; padding: 16px 20px; }
+.header .title { font-size: 32px; font-weight: 700; }
+.header .login-btn { background: #6c78e8; color: #fff; border: none; border-radius: 12px; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+.header .logo { display: flex; align-items: center; gap: 12px; }
+.header .logo img { width: 52px; height: 52px; border-radius: 50%; }
 
-.App-link {
-  color: #61dafb;
-}
+.highlight-card { background: var(--panel); border: 2px solid #3a3f74; border-radius: 16px; padding: 16px; margin-top: 16px; }
+.highlight-card .row { display: grid; grid-template-columns: 260px 1fr; gap: 24px; }
+.highlight-title { font-size: 24px; font-weight: 700; color: #d6dbff; }
+.highlight-list { line-height: 1.6; color: var(--text); }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Timeline */
+.tl-root { background: var(--panel); border: 2px solid #3a3f74; border-radius: 16px; margin-top: 16px; padding-top: 8px; }
+.tl-header { display: grid; grid-template-columns: 260px 1fr; border-bottom: 1px solid #343a72; }
+.tl-title { padding: 12px 12px; font-weight: 700; }
+.tl-calendar { overflow: hidden; }
+.tl-cal-scroller { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; pointer-events: none; }
+.tl-cal-scroller::-webkit-scrollbar { height: 0; display: none; }
+.tl-months { display: flex; border-bottom: 1px solid #343a72; background: var(--panel2); }
+.tl-month { color: var(--muted); font-weight: 600; text-align: center; padding: 8px 0; border-right: 1px solid #343a72; }
+.tl-days { display: flex; background: var(--panel2); }
+.tl-day { text-align: center; color: var(--muted); font-size: 12px; padding: 6px 0; border-right: 1px solid #2c3264; }
+.tl-day-today { color: #fff; font-weight: 800; }
+
+.tl-body { display: grid; grid-template-columns: 260px 1fr; height: 480px; }
+.tl-sidebar { overflow-y: auto; border-right: 1px solid #343a72; }
+.tl-event-name { display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #2a2f60; color: #e6e9ff; }
+.tl-scroller { overflow: auto; position: relative; }
+.tl-grid { position: relative; }
+.tl-row { position: relative; display: flex; border-bottom: 1px solid #2a2f60; }
+.tl-cell { border-right: 1px solid #2a2f60; height: 100%; }
+.tl-block { position: absolute; top: 6px; height: 32px; background: #7d8aff; color: #12143a; border: none; border-radius: 16px; font-weight: 700; padding: 0 14px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tl-today-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #ffd36e; pointer-events: none; }
+
+.tl-controls { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid #343a72; }
+.tl-controls button { background: #2a2f60; color: #e5e8ff; border: 1px solid #3e4486; border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: var(--panel); border: 2px solid #3a3f74; border-radius: 16px; padding: 16px; max-width: 520px; width: calc(100% - 32px); color: var(--text); position: relative; }
+.modal-close { position: absolute; top: 8px; right: 10px; background: transparent; border: none; color: #fff; font-size: 22px; cursor: pointer; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .header .title { font-size: 22px; }
+  .highlight-card .row { grid-template-columns: 1fr; }
+  .tl-header, .tl-body { grid-template-columns: 160px 1fr; }
 }
