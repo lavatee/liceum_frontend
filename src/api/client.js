@@ -68,6 +68,13 @@ export const authApi = {
       body: JSON.stringify({ email, code }),
     });
   },
+  refresh(refreshToken) {
+    return fetch(`${API_BASE_URL}/users/refresh-token`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ refresh_token: refreshToken }),
+    });
+  },
 };
 
 export const eventsApi = {
@@ -82,6 +89,40 @@ export const eventsApi = {
   },
   getBlock(id) {
     return request(`/users/block/${id}`);
+  },
+};
+
+
+export const adminApi = {
+  createEvent({ name, description, event_blocks }) {
+    return request(`/admins/events`, {
+      method: "POST",
+      body: JSON.stringify({ name, description, event_blocks }),
+    });
+  },
+  updateEvent(id, { name, description }) {
+    return request(`/admins/events/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ name, description }),
+    });
+  },
+  deleteEvent(id) {
+    return request(`/admins/events/${id}`, { method: "DELETE" });
+  },
+  createBlocks(blocks) {
+    return request(`/admins/blocks`, {
+      method: "POST",
+      body: JSON.stringify({ blocks }),
+    });
+  },
+  updateBlock(id, { name, description, link }) {
+    return request(`/admins/blocks/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ name, description, link }),
+    });
+  },
+  deleteBlock(id) {
+    return request(`/admins/blocks/${id}`, { method: "DELETE" });
   },
 };
 

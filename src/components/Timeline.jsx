@@ -20,7 +20,7 @@ function formatMonth(d) {
   return d.toLocaleString("ru-RU", { month: "long" });
 }
 
-export default function Timeline({ events, onSelectBlock }) {
+export default function Timeline({ events, onSelectBlock, adminMode = false, onEditEvent, onDeleteEvent, onAddBlock }) {
   const today = startOfDay(new Date());
   const [offsetMonths, setOffsetMonths] = useState(0);
   const gridRef = useRef(null);
@@ -142,8 +142,15 @@ export default function Timeline({ events, onSelectBlock }) {
           onScroll={onNamesScroll}
         >
           {events.map((ev) => (
-            <div key={ev.id} className="tl-event-name" style={{ height: rowHeight }}>
-              {ev.name}
+            <div key={ev.id} className="tl-event-name" style={{ height: rowHeight, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+              <span>{ev.name}</span>
+              {adminMode && (
+                <span style={{ display: "flex", gap: 6 }}>
+                  <button className="btn btn--sm" onClick={() => onAddBlock && onAddBlock(ev)}>Блок +</button>
+                  <button className="btn btn--sm btn--primary" onClick={() => onEditEvent && onEditEvent(ev)}>Изм.</button>
+                  <button className="btn btn--sm btn--danger" onClick={() => onDeleteEvent && onDeleteEvent(ev)}>Удал.</button>
+                </span>
+              )}
             </div>
           ))}
         </div>
