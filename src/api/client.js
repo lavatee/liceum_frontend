@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "/api";
 
 const ACCESS_KEY = "access";
 const REFRESH_KEY = "refresh";

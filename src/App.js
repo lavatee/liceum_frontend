@@ -133,6 +133,8 @@ function App() {
   }
 
   async function handleDeleteEvent(id) {
+    const confirmed = window.confirm("Вы уверены, что хотите удалить это событие?");
+    if (!confirmed) return;
     setAdminError("");
     const res = await adminApi.deleteEvent(id);
     if (res.ok) {
@@ -363,6 +365,57 @@ function App() {
                 </div>
               </>
             )}
+          </div>
+        )}
+      </Modal>
+      {/* Edit Event Modal */}
+      <Modal open={!!editEvent} onClose={() => setEditEvent(null)}>
+        {editEvent && (
+          <div>
+            <h3 style={{ marginTop: 0 }}>Изменить событие</h3>
+            <div style={{ display: "grid", gap: 10 }}>
+              <input
+                value={editEvent.name}
+                onChange={(e) => setEditEvent({ ...editEvent, name: e.target.value })}
+                placeholder="Название события"
+                style={{
+                  padding: 8,
+                  borderRadius: 8,
+                  border: "1px solid #3e4486",
+                  background: "#111433",
+                  color: "#fff",
+                }}
+              />
+              <input
+                value={editEvent.description}
+                onChange={(e) => setEditEvent({ ...editEvent, description: e.target.value })}
+                placeholder="Описание"
+                style={{
+                  padding: 8,
+                  borderRadius: 8,
+                  border: "1px solid #3e4486",
+                  background: "#111433",
+                  color: "#fff",
+                }}
+              />
+              {adminError && (
+                <div style={{ color: "#ff6464", fontSize: 15, marginBottom: 4 }}>
+                  {adminError}
+                </div>
+              )}
+              <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                <button
+                  className="btn btn--primary"
+                  disabled={!editEvent.name}
+                  onClick={handleSaveEvent}
+                >
+                  Сохранить
+                </button>
+                <button className="btn" onClick={() => setEditEvent(null)}>
+                  Отмена
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </Modal>
