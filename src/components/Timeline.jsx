@@ -143,9 +143,9 @@ export default function Timeline({ events, onSelectBlock, adminMode = false, onE
         >
           {events.map((ev) => (
             <div key={ev.id} className="tl-event-name" style={{ height: rowHeight, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-              <span>{ev.name}</span>
+              <span style={{ whiteSpace: "nowrap" }}>{ev.name}</span>
               {adminMode && (
-                <span style={{ display: "flex", gap: 6 }}>
+                <span style={{ display: "flex", gap: 6, flexShrink: 0 }}>
                   <button className="btn btn--sm" onClick={() => onAddBlock && onAddBlock(ev)}>Блок +</button>
                   <button className="btn btn--sm btn--primary" onClick={() => onEditEvent && onEditEvent(ev)}>Изм.</button>
                   <button className="btn btn--sm btn--danger" onClick={() => onDeleteEvent && onDeleteEvent(ev)}>Удал.</button>

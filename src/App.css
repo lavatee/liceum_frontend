@@ -38,8 +38,8 @@ button {font-family: "montserrat"}
 .tl-day-today { color: #fff; font-weight: 800; }
 
 .tl-body { display: grid; grid-template-columns: 260px 1fr; height: 480px; }
-.tl-sidebar { overflow-y: auto; border-right: 1px solid #343a72; }
-.tl-event-name { display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #2a2f60; color: #e6e9ff; }
+.tl-sidebar { overflow-y: auto; overflow-x: auto; border-right: 1px solid #343a72; }
+.tl-event-name { display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #2a2f60; color: #e6e9ff; min-width: max-content; }
 .tl-scroller { overflow: auto; position: relative; }
 .tl-grid { position: relative; }
 .tl-row { position: relative; display: flex; border-bottom: 1px solid #2a2f60; }
