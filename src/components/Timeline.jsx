@@ -31,7 +31,7 @@ export default function Timeline({ events, onSelectBlock, adminMode = false, onE
     const from = new Date(today);
     from.setMonth(from.getMonth() - 3 + offsetMonths);
     const to = new Date(today);
-    to.setMonth(to.getMonth() + 3 + offsetMonths);
+    to.setMonth(to.getMonth() + 6 + offsetMonths);
     const dayCount = Math.ceil((to - from) / (24 * 3600 * 1000));
     const arr = Array.from({ length: dayCount }, (_, i) => addDays(from, i));
     return [startOfDay(from), startOfDay(to), arr];
